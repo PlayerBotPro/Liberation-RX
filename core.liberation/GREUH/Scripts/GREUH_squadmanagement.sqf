@@ -8,13 +8,18 @@ switch (squadaction) do {
 
 	case "join" : {
 		if (_grp != _grp_player) then {
-			if (count (units _grp_player) == 1) then {
+			private _player_units = (units _grp_player) select { !(isPlayer _x) };
+			if (count _player_units == 0) then {
 				if !(_grp in global_locked_group) then {
 					[_grp_player, "del"] remoteExec ["addel_group_remote_call", 2];
 					[player] join _grp;
-					hint "Squad joined";
-				} else {hint "Sorry, the Squad is Locked."};
-			} else {hint "Sorry, your Group is not Empty."};
+					hint format ["player %1 join Squad %2", name player, _grp];
+				} else {
+					hint "Sorry, the Squad is Locked.";
+				};
+			} else {
+				hint "Sorry, your Group must have no AI.";
+			};
 		};
 	};
 
