@@ -16,7 +16,7 @@ waitUntil {
     _speed = round (abs speed vehicle _vehicle);
     if (_speed == 0 && (_vehicle distance2D _dest > _landing_range)) then {
         [_vehicle] call F_vehicleUnflip;
-        _vehicle setPos ((getPosATL _vehicle) vectorAdd [0, 0, 3]);
+        //_vehicle setPos ((getPosATL _vehicle) vectorAdd [0, 0, 3]);
         _driver doMove _dest;
         sleep 10;
     };

@@ -1,7 +1,9 @@
 params ["_transport"];
 
+private _collect_radius = 100;
+
 // when near dest collect all ressource in radius (upto transport capa)
-private _ressources = (_transport nearEntities [GRLIB_AI_logistic_ressources, 100]) select {
+private _ressources = (_transport nearEntities [GRLIB_AI_logistic_ressources, _collect_radius]) select {
     alive _x &&
     (_x distance2D lhd > GRLIB_fob_range) &&
     (_x distance2D ([_x] call F_getNearestFob) > GRLIB_fob_range) &&

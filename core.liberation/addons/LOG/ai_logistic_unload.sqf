@@ -11,6 +11,7 @@ if (_transport isKindOf "Helicopter_Base_F") then {
 		(_alt <= 3 || time > _stop);
 	};
 	doStop _driver;
+    sleep 10;
 };
 
 // near storage
