@@ -15,9 +15,16 @@ _unit setUnitLoadout _loadout;
 unAssignVehicle _unit;
 [_unit] orderGetIn false;
 [_unit] allowGetIn false;
-
 [_unit] call F_fixPosUnit;
 
+{_unit disableAI _x} count ["TARGET","AUTOTARGET","AUTOCOMBAT","SUPPRESSION"];
+_unit setUnitPos "UP";
+
+private _grp = createGroup [GRLIB_side_civilian, true];
+[_unit] joinSilent _grp;
+
+_unit setVariable ["GRLIB_is_kamikaze", true, true];
+_unit setVariable ["GRLIB_can_speak", false, true];
 _unit removeAllEventHandlers "HandleDamage";
 _unit removeAllEventHandlers "GetInMan";
 _unit removeAllEventHandlers "SeatSwitchedMan";
@@ -26,14 +33,6 @@ _unit addEventHandler ["GetInMan", {_this spawn vehicle_perm}];
 _unit addEventHandler ["SeatSwitchedMan", {_this spawn vehicle_perm}];
 _unit addEventHandler ["Take", {removeAllWeapons (_this select 0)}];
 
-{_unit disableAI _x} count ["TARGET","AUTOTARGET","AUTOCOMBAT","SUPPRESSION"];
-_unit setUnitPos "UP";
-
-private _grp = createGroup [GRLIB_side_civilian, true];
-[_unit] joinSilent _grp;
-
-[_grp] call F_deleteWaypoints;
-_unit setVariable ["GRLIB_is_kamikaze", true, true];
 _grp setCombatMode "BLUE";
 _grp setBehaviourStrong "SAFE";
 _unit setSpeedMode "NORMAL";

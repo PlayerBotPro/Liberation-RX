@@ -19,16 +19,6 @@ removeVest _unit;
 unAssignVehicle _unit;
 [_unit] orderGetIn false;
 [_unit] allowGetIn false;
-
-_unit setVariable ["GRLIB_can_speak", false, true];
-_unit removeAllEventHandlers "HandleDamage";
-_unit removeAllEventHandlers "GetInMan";
-_unit removeAllEventHandlers "SeatSwitchedMan";
-_unit removeAllEventHandlers "Take";
-_unit addEventHandler ["GetInMan", {_this spawn vehicle_perm}];
-_unit addEventHandler ["SeatSwitchedMan", {_this spawn vehicle_perm}];
-_unit addEventHandler ["Take", {removeAllWeapons (_this select 0)}];
-_unit setCaptive true;
 [_unit] call F_fixPosUnit;
 
 // Halt
@@ -39,7 +29,17 @@ if (!alive _unit) exitWith {};
 
 private _grp = createGroup [GRLIB_side_civilian, true];
 [_unit] joinSilent _grp;
+
 _unit setVariable ["GRLIB_is_prisoner", true, true];
+_unit setVariable ["GRLIB_can_speak", false, true];
+_unit removeAllEventHandlers "HandleDamage";
+_unit removeAllEventHandlers "GetInMan";
+_unit removeAllEventHandlers "SeatSwitchedMan";
+_unit removeAllEventHandlers "Take";
+_unit addEventHandler ["GetInMan", {_this spawn vehicle_perm}];
+_unit addEventHandler ["SeatSwitchedMan", {_this spawn vehicle_perm}];
+_unit addEventHandler ["Take", {removeAllWeapons (_this select 0)}];
+_unit setCaptive true;
 
 // Wait
 if (!_canmove) then {
