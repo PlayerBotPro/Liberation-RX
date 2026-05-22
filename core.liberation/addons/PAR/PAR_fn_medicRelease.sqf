@@ -6,7 +6,7 @@ private _release_medic = {
 	if (isPlayer _medic) exitWith {};
 
 	[_medic] joinSilent (_medic getVariable "PAR_Grp_AI");
-	_medic assignTeam (_medic getVariable "PAR_AIteam");
+	_medic assignTeam (_medic getVariable ["PAR_AIteam", "MAIN"]);
 
 	if !([_medic] call PAR_is_wounded) then {
 		{_medic enableAI _x} forEach ["TARGET","AUTOTARGET","AUTOCOMBAT","SUPPRESSION"];
