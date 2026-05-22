@@ -11,7 +11,7 @@ switch _classname do {
         _dist = 35;
     };
     case mobile_respawn: {
-        build_radius = 1.5;
+        build_radius = 3;
         _dist = 2;
     };
     case playerbox_typename: {
