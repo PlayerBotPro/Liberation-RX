@@ -23,6 +23,7 @@ _setupObjects = {
 	_chair1 = createVehicle ["Land_CampingChair_V1_F", _missionPos, [], 2, "None"];
 	_chair2 = createVehicle ["Land_CampingChair_V2_F", _missionPos, [], 2, "None"];
 	_fire1 = createVehicle ["Campfire_burning_F", _missionPos, [], 2, "None"];
+	_vehicles = [_tent1, _chair1, _chair2, _fire1];
 
 	// R3F disable
 	{ _x setVariable ["R3F_LOG_disabled", true, true] } forEach [_tent1, _chair1, _chair2, _fire1];
@@ -37,20 +38,18 @@ _setupObjects = {
 	sleep 1;
 
 	// create static weapons
-	private _veh1 = objNull;
 	private _pos = [_missionPos, 3, 0, 80] call F_findSafePlace;
 	if (count _pos > 0) then {
-		private _static_units = [_pos, 1, GRLIB_side_friendly, true, "resistance"] call spawn_static;
-		_veh1 = _static_units select 0;
+		([_pos, 1, GRLIB_side_friendly, true, "resistance"] call spawn_static) params ["_static_vehicles", "_static_units"];
+		_vehicles append _static_vehicles;
 		_managed_units append _static_units;
 		sleep 1;
 	};
-	
-	private _veh2 = objNull;
+
 	private _pos = [_missionPos, 3, 0, 80] call F_findSafePlace;
 	if (count _pos > 0) then {
-		private _static_units = [_pos, 1, GRLIB_side_friendly, true, "resistance"] call spawn_static;
-		_veh2 = _static_units select 0;
+		([_pos, 1, GRLIB_side_friendly, true, "resistance"] call spawn_static) params ["_static_vehicles", "_static_units"];
+		_vehicles append _static_vehicles;
 		_managed_units append _static_units;
 		sleep 1;
 	};
@@ -100,7 +99,6 @@ _setupObjects = {
 		};
 	};
 
-	_vehicles = [_tent1, _chair1, _chair2, _fire1, _veh1, _veh2];
 	_missionHintText = ["STR_RESISTANCE_MESSAGE1", sideMissionColor, _location_name];
 	true;
 };

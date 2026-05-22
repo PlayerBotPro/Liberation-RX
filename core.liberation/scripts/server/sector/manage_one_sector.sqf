@@ -321,8 +321,12 @@ if (_static_count > 0) then {
 	[_static_count, _infsquad1, _sector_pos, _sector] spawn {
 		params ["_static_count", "_infsquad1", "_sector_pos", "_sector"];
 		private _managed_units = missionNamespace getVariable [format ["LRX_sector_%1_units", _sector], []];
-		_managed_units append ([_sector_pos, _static_count, GRLIB_side_enemy, false, _infsquad1] call spawn_static);
+		private _managed_vehicles = missionNamespace getVariable [format ["LRX_sector_%1_vehicles", _sector], []];
+		([_sector_pos, _static_count, GRLIB_side_enemy, false, _infsquad1] call spawn_static) params ["_static_vehicles", "_static_units"];
+		_managed_vehicles append _static_vehicles;
+		_managed_units append _static_units;
 		missionNamespace setVariable [format ["LRX_sector_%1_units", _sector], _managed_units];
+		missionNamespace setVariable [format ["LRX_sector_%1_vehicles", _sector], _managed_vehicles];
 	};
 };
 

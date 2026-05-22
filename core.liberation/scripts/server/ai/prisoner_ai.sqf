@@ -1,8 +1,9 @@
 params ["_unit", ["_friendly", false], ["_canmove", false]];
 
 if (!alive _unit) exitWith {};
-if !(isNull objectParent _unit) exitWith {};
+if (!isNull objectParent _unit) exitWith {};
 if (_unit getVariable ["GRLIB_is_prisoner", false]) exitWith {};
+if (_unit getVariable ["GRLIB_is_kamikaze", false]) exitWith {};
 if (surfaceIsWater (getPosATL _unit)) exitWith {};
 
 // Check locality

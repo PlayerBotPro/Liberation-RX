@@ -16,6 +16,7 @@ if (_side == GRLIB_side_friendly) then {
 diag_log format ["--- LRX Spawn %1 Static Weapon (%2/%3) at %4", _count, _side, _type, time];
 
 private _static_units = [];
+private _static_vehicles = [];
 private _static_count = 0;
 private _max_try = 100;
 
@@ -28,7 +29,7 @@ while { _static_count < _count && _max_try > 0 } do {
 		_vehicle addMPEventHandler ["MPKilled", {_this spawn kill_manager}];
 		_vehicle setVariable ["R3F_LOG_disabled", true, true];
 		_vehicle setVariable ["GRLIB_vehicle_owner", "server", true];
-		_static_units append [_vehicle];
+		_static_vehicles append [_vehicle];
 		_static_count = _static_count + 1;
 		diag_log format ["--- LRX Spawn Static Weapon %1", typeOf _vehicle];
 
@@ -60,4 +61,4 @@ while { _static_count < _count && _max_try > 0 } do {
 	sleep 1;
 };
 
-_static_units;
+[_static_vehicles, _static_units];

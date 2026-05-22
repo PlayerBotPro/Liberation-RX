@@ -33,7 +33,8 @@ _setupObjects = {
 	[_missionPos, 30] call createlandmines;
 	_missionHintText = ["STR_OUTPOST_MESSAGE1", sideMissionColor];
 
-	private _static_units = [_missionPos, 3, GRLIB_side_enemy, true, "infantry"] call spawn_static;
+	([_missionPos, 3, GRLIB_side_enemy, true, "infantry"] call spawn_static) params ["_static_vehicles", "_static_units"];
+	_vehicles append _static_vehicles;
 	_static_units joinSilent _aiGroup;
 	true;
 };

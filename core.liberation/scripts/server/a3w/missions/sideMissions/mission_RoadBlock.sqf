@@ -59,8 +59,10 @@ _setupObjects = {
 	_def2 setVectorDirAndUp [[-cos _bunker_dir, sin _bunker_dir, 0] vectorCrossProduct surfaceNormal _def2_pos, surfaceNormal _def2_pos];
 	_def2 setPosATL _def2_pos;
 
+	_vehicles = [_bunker, _def1, _def2];
+
 	// R3F disable
-	{ _x setVariable ["R3F_LOG_disabled", true, true] } forEach [_bunker, _def1, _def2];
+	{ _x setVariable ["R3F_LOG_disabled", true, true] } forEach _vehicles;
 
 	//----- spawn units ---------------------------------
 	_guard_grp = [_missionPos, 4, "militia", false] call createCustomGroup;
@@ -70,23 +72,24 @@ _setupObjects = {
 	_guard disableAI "PATH";
 
 	private _veh1_pos = (getPosATL _def1) vectorAdd ([[0, -1, 0.1], - _bunker_dir] call BIS_fnc_rotateVector2D);
-	private _static_units = [_veh1_pos, 1, GRLIB_side_enemy, true, "militia"] call spawn_static;
-	_veh1 = _static_units select 0;
+	([_veh1_pos, 1, GRLIB_side_enemy, true, "militia"] call spawn_static) params ["_static_vehicles", "_static_units"];
 	_static_units joinSilent _guard_grp;
+	_vehicles append _static_vehicles;
+	_veh1 = _static_vehicles select 0;
 	_veh1 disableCollisionWith _def1;
 	_veh1 setDir _bunker_dir;
 	_veh1 setPos _veh1_pos;
 
 	private _veh2_pos = (getPosATL _def2) vectorAdd ([[0, 1, 0.1], - _bunker_dir] call BIS_fnc_rotateVector2D);
-	private _static_units = [_veh2_pos, 1, GRLIB_side_enemy, true, "militia"] call spawn_static;
-	_veh2 = _static_units select 0;
+	([_veh2_pos, 1, GRLIB_side_enemy, true, "militia"] call spawn_static) params ["_static_vehicles", "_static_units"];
 	_static_units joinSilent _guard_grp;
+	_vehicles append _static_vehicles;
+	_veh2 = _static_vehicles select 0;
 	_veh2 disableCollisionWith _def2;
 	_veh2 setDir (_bunker_dir -180);
 	_veh2 setPos _veh2_pos;
 
 	_aiGroup = [_missionPos, ([] call getNbUnits), "militia"] call createCustomGroup;
-	_vehicles = [_bunker, _def1, _def2, _veh1, _veh2];
 	_missionPicture = "\A3\Static_f_gamma\data\ui\gear_StaticTurret_GMG_CA.paa";
 	_missionHintText = "STR_ROADBLOCK_MESSAGE1";
 	true;
