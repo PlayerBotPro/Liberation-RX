@@ -1,13 +1,14 @@
-params ["_vehicles"];
+params ["_vehicles", ["_fast", false]];
 if (isNil "_vehicles") exitWith {};
 if (typeName _vehicles != "ARRAY") then { _vehicles = [_vehicles] };
 
 {
-	[_x] spawn {
-		params ["_vehicle"];
+	[_x, _fast] spawn {
+		params ["_vehicle", "_fast"];
 		if (isNull _vehicle) exitWith {};
-		waitUntil { sleep 30; (GRLIB_global_stop == 1 || !alive _vehicle || [_vehicle, GRLIB_sector_size, GRLIB_side_friendly] call F_getUnitsCount == 0) };
-
+		if (!_fast) then {
+			waitUntil { sleep 30; (GRLIB_global_stop == 1 || !alive _vehicle || [_vehicle, GRLIB_sector_size, GRLIB_side_friendly] call F_getUnitsCount == 0) };
+		};
 		if (!alive _vehicle) exitWith {};
 		if (_vehicle isKindOf "CAManBase") then {
 			deleteVehicle _vehicle;

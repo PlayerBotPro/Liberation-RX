@@ -50,7 +50,7 @@ stats_secondary_objectives = stats_secondary_objectives + 1;
 waitUntil { sleep 30; (GRLIB_global_stop == 1 || [_missionPos, GRLIB_sector_size, GRLIB_side_friendly] call F_getUnitsCount == 0) };
 
 private _vehicles = (_base_objectives + _base_objects);
-[_vehicles] call cleanMissionVehicles;
+[_vehicles, true] call cleanMissionVehicles;
 
 { deleteVehicle _x } forEach ((nearestObjects [_missionPos, ["Ruins_F"], 100]) select { getObjectType _x == 8 });
 { deleteVehicle _x } forEach (units _grp_defenders);

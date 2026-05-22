@@ -98,6 +98,6 @@ while {true} do {
 
 // Cleanup
 waitUntil { sleep 30; (GRLIB_global_stop == 1 || [_last_pos, GRLIB_sector_size, GRLIB_side_friendly] call F_getUnitsCount == 0) };
-[_vehicle] spawn cleanMissionVehicles;
+[_vehicle, true] spawn cleanMissionVehicles;
 { deleteVehicle _x; sleep 0.1 } forEach (units _grp);
 deleteGroup _grp;

@@ -47,10 +47,10 @@ if (!isNil "_setupObjects" && _continue_mission) then { _continue_mission = call
 if (!_continue_mission) exitWith {
 	diag_log format ["--- LRX Error: A3W Side Mission %1 - failed to setup %2", _controllerSuffix, localize _missionType];
 	if (!isNil "_vehicle") then {
-		[_vehicle] spawn cleanMissionVehicles;
+		[_vehicle, true] spawn cleanMissionVehicles;
 	};
 	if (!isNil "_vehicles") then {
-		[_vehicles] spawn cleanMissionVehicles;
+		[_vehicles, true] spawn cleanMissionVehicles;
 	};
 };
 
@@ -179,23 +179,27 @@ if (_failed) then {
 
 // Cleanup
 if (_count_blu == 0) then {
+	if (!isNil "_vehicle") then {
+		[_vehicle, true] spawn cleanMissionVehicles;
+	};
+	if (!isNil "_vehicles") then {
+		[_vehicles, true] spawn cleanMissionVehicles;
+	};	
 	{ deleteVehicle _x; sleep 0.1 } forEach (units _aiGroup);
 	deleteGroup _aiGroup;
 } else {
+	if (!isNil "_vehicle") then {
+		[_vehicle] spawn cleanMissionVehicles;
+	};
+	if (!isNil "_vehicles") then {
+		[_vehicles] spawn cleanMissionVehicles;
+	};
 	[_lastPos, _aiGroup] spawn {
 		params ["_pos", "_grp"];
-		waitUntil { sleep 30; ([_pos, GRLIB_sector_size, GRLIB_side_friendly] call F_getUnitsCount == 0) };
+		waitUntil { sleep 30; (GRLIB_global_stop == 1 || [_pos, GRLIB_sector_size, GRLIB_side_friendly] call F_getUnitsCount == 0) };
 		{ deleteVehicle _x; sleep 0.1 } forEach (units _grp);
 		deleteGroup _grp;
 	};
-};
-
-if (!isNil "_vehicle") then {
-	[_vehicle] spawn cleanMissionVehicles;
-};
-
-if (!isNil "_vehicles") then {
-	[_vehicles] spawn cleanMissionVehicles;
 };
 
 if (!isNil "_missionlocation") then {
