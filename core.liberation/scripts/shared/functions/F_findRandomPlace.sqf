@@ -1,4 +1,8 @@
 params ["_start_pos", ["_size", 5], ["_water_mode", -1], ["_max_radius", 150], ["_on_road", true]];
+// Water mode
+//  0: position cannot be over water
+//  2: position cannot be over land
+// -1: to ignore
 
 private _spawn_pos = [];
 private _max_try = 25;

@@ -1,22 +1,22 @@
 if (!isServer) exitwith {};
 #include "sideMissionDefines.sqf"
 
-private ["_nbUnits", "_box1", "_box2"];
+private ["_box1", "_box2"];
 
 _setupVars = {
 	_missionType = "STR_SUNKEN";
 	_locationsArray = [SunkenMissionMarkers] call checkSpawn;
-	_nbUnits = [] call getNbUnits;
 	_precise_marker = false;
 };
 
 _setupObjects = {
 	_missionPos = markerpos _missionLocation;
 	_vehicle = [_missionPos, selectRandom opfor_boats, 0, GRLIB_side_enemy, "", true, true] call F_libSpawnVehicle;
-	_aiGroup = [_missionPos, _nbUnits, "divers", true] call createCustomGroup;
+	_nbUnits = [] call getNbUnits;
+	_aiGroup = [_missionPos, _nbUnits, "divers"] call createCustomGroup;
 	(crew _vehicle) joinSilent _aiGroup;
-	_box1 = [ammobox_o_typename, _missionPos, true] call boxSetup;
-	_box2 = [ammobox_o_typename, _missionPos, true] call boxSetup;
+	_box1 = [ammobox_o_typename, _missionPos getPos [10, floor random 360], true] call boxSetup;
+	_box2 = [ammobox_o_typename, _missionPos getPos [10, floor random 360], true] call boxSetup;
 	_missionPicture = getText (configFile >> "CfgVehicles" >> "O_Boat_Armed_01_hmg_F" >> "picture");
 	_missionHintText = "STR_SUNKEN_MESSAGE1";
 	true;

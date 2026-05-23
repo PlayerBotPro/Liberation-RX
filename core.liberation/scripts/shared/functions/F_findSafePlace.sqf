@@ -26,6 +26,7 @@ while { _radius < _max_radius } do {
     // Test roads
     _rfree = !(!_on_road && isOnRoad _spawn_pos);
 
+    // Test collision
     _vfree = false;
     _hfree = false;
 
