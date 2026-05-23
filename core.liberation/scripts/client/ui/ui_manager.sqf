@@ -142,7 +142,7 @@ while {true} do {
 					_fob_sector = true;
 				} else {
 					if (GRLIB_player_near_fob) then {
-						_nearest_active_sector = format ["fobmarker%1", (GRLIB_all_fobs find GRLIB_player_nearest_fob)];
+						_nearest_active_sector = format ["fobmarker%1", mapGridPosition GRLIB_player_nearest_fob];
 						_fob_sector = true;
 					} else {
 						_nearest_active_sector = [GRLIB_sector_size] call F_getNearestSector;

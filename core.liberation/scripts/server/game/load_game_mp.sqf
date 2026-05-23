@@ -182,10 +182,6 @@ if (!isNil "_lrx_liberation_savegame") then {
 	} else {
 		GRLIB_sector_defense = _sector_defense;
 	};
-	{
-		private _def = GRLIB_sector_defense get _x;
-		if (_def == 0 || !(_x in blufor_sectors)) then { GRLIB_sector_defense deleteAt _x };
-	} forEach (keys GRLIB_sector_defense);
 
 	setDate [GRLIB_date_year, GRLIB_date_month, GRLIB_date_day, time_of_day, 0];
 

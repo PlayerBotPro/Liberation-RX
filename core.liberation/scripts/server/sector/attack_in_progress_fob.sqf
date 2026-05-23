@@ -1,4 +1,4 @@
-params [ "_fob_pos" ];
+params ["_fob_pos"];
 
 sleep 30;
 private _ownership = [_fob_pos] call F_sectorOwnership;
@@ -8,7 +8,7 @@ if (GRLIB_endgame == 1 || GRLIB_global_stop == 1) exitWith {};
 diag_log format ["Spawn Attack FOB %1 at %2", _fob_pos, time];
 private _max_prisoners = 4;
 private _grp = grpNull;
-private _sector = format ["fobmarker%1", (GRLIB_all_fobs find _fob_pos)];
+private _sector = format ["fobmarker%1", mapGridPosition _fob_pos];
 private _defense_type = [_sector] call F_getDefenseType;
 
 if (_defense_type > 0) then {

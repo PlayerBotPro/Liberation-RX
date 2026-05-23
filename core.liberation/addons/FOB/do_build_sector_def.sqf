@@ -36,7 +36,7 @@ while { dialog && alive player } do {
         lbClear 110;
         {
             _text = [_x] call F_getLocationName;
-            _sector = format ["fobmarker%1", _forEachIndex];
+            _sector = format ["fobmarker%1", mapGridPosition _x];
             _defense_type = [_sector] call F_getDefenseType;
             lnbAddRow [110, [_text, (_defense_list select _defense_type)]];
             lnbSetPicture  [110, [((lnbSize 110) select 0) - 1, 0], _icon];
@@ -75,6 +75,7 @@ while { dialog && alive player } do {
                 [_sector, build_type] remoteExec ["sector_defenses_remote_call", 2];
                 private _msg = format [localize "STR_FOB_PLAYER_SET_GARRISON", name player, (_defense_list select build_type), _sector_name];
                 [gamelogic, _msg] remoteExec ["globalChat", 0];
+                sleep 1;
             } else {
                 gamelogic globalChat format [localize "STR_FOB_MAX_GARRISON_REACHED", _max_defense];
             };

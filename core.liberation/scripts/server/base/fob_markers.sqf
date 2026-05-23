@@ -13,7 +13,7 @@ while {true} do {
 		{
 			_fobpos = _x;
 			_near_outpost = (_fobpos in GRLIB_all_outposts);
-			_marker = createMarkerLocal [format ["fobmarker%1", _forEachIndex], markers_reset];
+			_marker = createMarkerLocal [format ["fobmarker%1", mapGridPosition _fobpos], markers_reset];
 			if (_near_outpost) then {
 				_marker setMarkerTypeLocal "b_support";
 				_marker setMarkerSizeLocal [ 1.2, 1.2 ];
@@ -25,6 +25,7 @@ while {true} do {
 				_marker setMarkerTextLocal format ["FOB %1",military_alphabet select _forEachIndex];
 				_marker setMarkerColorLocal "ColorYellow";
 			};
+			_marker setMarkerDrawPriority -1;
 			_marker setMarkerPos _fobpos;
 			_markers pushback _marker;
 		} forEach GRLIB_all_fobs;
@@ -36,8 +37,10 @@ while {true} do {
 		_markers_def = [];
 		{
 			private _sector = _x;
-			if (_sector in blufor_sectors) then {
-				private _def = GRLIB_sector_defense get _sector;
+			private _def = GRLIB_sector_defense get _sector;
+			if (markerPos _sector isEqualTo [0,0,0]) then {
+				[_sector, 0] call sector_defenses_remote_call;
+			} else {
 				private _marker = createMarkerLocal [format ["defense_%1", _sector], markers_reset];
 				_marker setMarkerShapeLocal "ICON";
 				_marker setMarkerTypeLocal "loc_defend";
@@ -48,6 +51,7 @@ while {true} do {
 					case 3:	{ _color = "#(0.25, 0.25, 0.25, 1.00)" };	// "ColorBlack"
 				};
 				_marker setMarkerColorLocal _color;
+				_marker setMarkerDrawPriority 1;
 				_marker setMarkerPos (markerPos _sector);
 				_markers_def pushback _marker;
 			};
