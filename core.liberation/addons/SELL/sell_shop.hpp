@@ -48,7 +48,7 @@ class Sell_Shop {
 			colorPictureDisabled[] = {0.4,0.4,0.4,1};
 			x = 0.2027 * safezoneW + safezoneX;
 			y = 0.2074 * safezoneH + safezoneY;
-			w = 0.1515 * safezoneW;
+			w = 0.1440 * safezoneW;
 			h = 0.484 * safezoneH;
 		};
 

@@ -41,7 +41,7 @@ class VIRT_vehicle_garage {
 			x = 0.205887 * safezoneW + safezoneX;
 			y = 0.2074 * safezoneH + safezoneY;
 			w = 0.221719 * safezoneW;
-			h = 0.473 * safezoneH;
+			h = 0.484 * safezoneH;
 			columns[] = {0, 0.75};
 			onLBSelChanged = "";
 			shadow = 2;

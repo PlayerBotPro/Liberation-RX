@@ -47,8 +47,8 @@ class Sector_Defense {
 			colorPictureDisabled[] = {0.4,0.4,0.4,1};
 			x = 0.2027 * safezoneW + safezoneX;
 			y = 0.2074 * safezoneH + safezoneY;
-			w = 0.1480 * safezoneW;
-			h = 0.53 * safezoneH;
+			w = 0.1440 * safezoneW;
+			h = 0.52 * safezoneH;
 		};
 
 		class CancelButton : StdButton {

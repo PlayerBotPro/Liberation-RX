@@ -38,10 +38,9 @@ class Warehouse {
 
 		class VehListOut: StdListNBox {
 			idc = 110;
-			x = 0.2158 * safezoneW + safezoneX;
+			x = 0.2027 * safezoneW + safezoneX;
 			y = 0.2074 * safezoneH + safezoneY;
-			//w = 0.221719 * safezoneW;
-			w = 0.1050 * safezoneW;
+			w = 0.1135 * safezoneW;
 			h = 0.473 * safezoneH;
 			columns[] = {0, 0.75};
 			onLBSelChanged = "";
@@ -54,10 +53,9 @@ class Warehouse {
 
 		class VehListIn: StdListNBox {
 			idc = 111;
-			x = 0.3166 * safezoneW + safezoneX;
+			x = 0.3195 * safezoneW + safezoneX;
 			y = 0.2074 * safezoneH + safezoneY;
-			//w = 0.221719 * safezoneW;
-			w = 0.1200 * safezoneW;
+			w = 0.1135 * safezoneW;
 			h = 0.473 * safezoneH;
 			columns[] = {0, 0.75, 0.05};
 			onLBSelChanged = "";
