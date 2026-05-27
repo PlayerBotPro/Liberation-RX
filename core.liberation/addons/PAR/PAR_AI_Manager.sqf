@@ -6,9 +6,7 @@ private ["_unit_list", "_unit", "_is_medic", "_has_medikit", "_wnded_list", "_wn
 while {true} do {
 	waitUntil {
 		sleep 1;
-		_unit_list = PAR_AI_bros;
-		private _my_squad = player getVariable "my_squad";
-		if (!isNil "_my_squad") then { _unit_list append (units _my_squad) };
+		_unit_list = [] call PAR_protected_units;
 		(count _unit_list > 1)
 	};
 
@@ -47,7 +45,10 @@ while {true} do {
 		// AI revive
 		if (PAR_revive != 0 && PAR_ai_revive_max > 0) then {
 			// Medic Auto Heal units
-			if (behaviour player in ["SAFE", "AWARE"]) then { [_unit] call PAR_fn_heal };
+			private _is_medic = [_unit] call PAR_is_medic;
+			private _has_medikit = [_unit] call PAR_has_medikit;
+			private _no_enemy = (([_unit, GRLIB_capture_size, GRLIB_side_enemy] call F_getUnitsCount) == 0);
+			if (_no_enemy && _is_medic && _has_medikit) then { [_unit] call PAR_fn_heal };
 
 			// AI medical status
 			private _msg = "";

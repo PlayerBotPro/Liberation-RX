@@ -16,6 +16,12 @@ PAR_fn_sortie = compileFinal preprocessFileLineNumbers "addons\PAR\PAR_fn_sortie
 PAR_fn_unconscious = compileFinal preprocessFileLineNumbers "addons\PAR\PAR_fn_unconscious.sqf";
 // PAR_is_wounded = compileFinal preprocessFileLineNumbers "addons\PAR\PAR_is_wounded.sqf";  // moved to shared
 
+PAR_protected_units = {
+	private _units = PAR_AI_bros;
+	private _my_squad = player getVariable "my_squad";
+	if (!isNil "_my_squad") then { _units = _units + (units _my_squad) };
+	(_units select { alive _x});
+};
 PAR_unblock_AI = {
 	// Unblock unit(s) 0-8-1
 	params ["_unit_array"];
