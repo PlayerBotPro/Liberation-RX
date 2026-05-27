@@ -184,7 +184,7 @@ while { dialog && alive player } do {
 				waitUntil { sleep 0.5; dobuild == 0};
 
 				if (build_confirmed == 0) then {
-					if (!([_price] call F_pay)) then {
+					if !([_price] call F_pay) then {
 						deleteVehicle build_vehicle;
 					};
 				};

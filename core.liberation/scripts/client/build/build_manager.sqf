@@ -168,13 +168,13 @@ while {true} do {
 		if (_classname isKindOf "Dog_Base_F" || _classname in MFR_Dogs_classname) then {
 			[0,0,0, "add", _classname] call do_dog;
 		} else {
-			if (!([_price] call F_pay)) exitWith {};
+			if !([_price] call F_pay) exitWith {};
 			[_classname] call do_build_unit;
 		};
 	};
 
 	if (_buildtype == GRLIB_SquadBuildType) then {
-		if (!([_price] call F_pay)) exitWith {};
+		if !([_price] call F_pay) exitWith {};
 		[_classname] call do_build_squad;
 	};
 

@@ -55,7 +55,7 @@ _unit addEventHandler ["FiredMan", {
 	// 	[_projectile] spawn {
 	// 		params ["_projectile"];
 	// 		private _price = 5;
-	// 		if (!([_price] call F_pay)) then {
+	// 		if !([_price] call F_pay) then {
 	// 			gamelogic globalChat "Not enough Ammo, Artillery fire canceled.";
 	// 			deleteVehicle _projectile;
 	// 		} else {
