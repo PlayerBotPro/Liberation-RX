@@ -60,7 +60,6 @@ private ["_unit", "_path"];
 } forEach _crew;
 
 _crew allowGetIn true;
-_crew orderGetIn true;
 _grp addVehicle _vehicle;
 
 if (_side == GRLIB_side_civilian) then {

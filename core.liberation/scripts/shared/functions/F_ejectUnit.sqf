@@ -1,15 +1,14 @@
 params ["_unit", ["_slow", true]];
 
 if (!local _unit) exitWith { [_unit, _slow] remoteExec ["eject_unit_remote_call", 2] };
-if (isNull objectParent _unit || isNull _unit) exitWith {};
+if (isNull (objectParent _unit) || isNull _unit) exitWith {};
 if ((vehicle _unit) isKindOf "ParachuteBase") exitWith {};
 
-unAssignVehicle _unit;
-[_unit] orderGetIn false;
 [_unit] allowGetIn false;
 
 if (_slow) then { sleep 2 };
 moveOut _unit;
+unAssignVehicle _unit;
 sleep 1;
 
 private _unit_alt = getPos _unit select 2;

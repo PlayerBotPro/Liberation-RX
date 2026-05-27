@@ -2,7 +2,7 @@ params ["_vehicle", "_units", ["_delete", true]];
 
 private _vehicle_roles = [];
 { _vehicle_roles pushBack (_x select 1)} forEach (fullCrew [_vehicle, "", true] - fullCrew _vehicle);
-if (count _units > count _vehicle_roles) then { diag_log format ["--- LRX Error: group too large for vehicle %1", typeOf _vehicle]};
+if (count _units > count _vehicle_roles) then { gamelogic globalchat format ["Group too large for vehicle %1", [_vehicle] call F_getLRXName]};
 
 if (!local _vehicle) then {
 	if (count crew _vehicle == 0) then {
@@ -15,8 +15,11 @@ if (!local _vehicle) then {
     sleep 1;
 };
 
+private _turrets = (allTurrets [_vehicle, true]) select { isNull (_vehicle turretUnit _x)};
 private _lock = locked _vehicle;
+private _indx = 0;
 _vehicle lock 0;
+_units allowGetIn true;
 
 {
     if (_forEachIndex >= count _vehicle_roles) then {
@@ -25,34 +28,32 @@ _vehicle lock 0;
             deleteVehicle _x;
         };
     } else {
-        private _assigned = false;
         private _role = _vehicle_roles select _forEachIndex;
 
         if (_role == "driver") then {
             _x assignAsDriver _vehicle;
             _x moveInDriver _vehicle;
-            _assigned = true;
         };
         if (_role == "commander") then {
             _x assignAsCommander _vehicle;
             _x moveInCommander _vehicle;
-            _assigned = true;
         };
         if (_role == "gunner") then {
             _x assignAsGunner _vehicle;
             _x moveInGunner _vehicle;
-            _assigned = true;
         };
-        if (!_assigned) then {
+        if (_role == "cargo") then {
             _x assignAsCargo _vehicle;
             _x moveInCargo _vehicle;
+        };
+        if (_role == "turret") then {
+            _x assignAsTurret [_vehicle, (_turrets select _indx)];
+            _x moveInTurret [_vehicle, (_turrets select _indx)];
+            _indx = _indx + 1;
         };
         if (!_delete) then { sleep 0.2 };
     };
 } forEach _units;
-
-_units allowGetIn true;
-_units orderGetIn true;
 
 _vehicle lock _lock;
 sleep 1;
