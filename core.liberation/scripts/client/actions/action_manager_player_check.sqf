@@ -7,7 +7,10 @@ GRLIB_checkOperator = {
 };
 
 GRLIB_checkSquad = {
-	(GRLIB_player_is_menuok && !isNil {player getVariable ["my_squad", nil]});
+	private _my_squad = player getVariable ["my_squad", nil];
+	if (isNil "_my_squad") exitWith { false };
+	private _in_vehicle = { !isNull objectParent _x } count (units _my_squad);
+	(GRLIB_player_is_menuok && _in_vehicle == 0);
 };
 
 GRLIB_check_Dog = {

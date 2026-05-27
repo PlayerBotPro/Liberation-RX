@@ -15,7 +15,7 @@ private ["_unitrank", "_unit", "_class_overide"];
 	[_unit] call PAR_fn_AI_Damage_EH;
 	[_unit] call F_fixModUnit;
 	_unit setUnitRank _unitrank;
-	_unit setSkill 0.6;
+	_unit setSkill 0.65;
 	_unit enableIRLasers true;
 	_unit enableGunLights "Auto";
 	if (GRLIB_force_english) then { _unit setSpeaker (format ["Male0%1ENG", round (1 + floor random 9)]) };
@@ -38,5 +38,6 @@ if (player != hcLeader _grp) then {
 };
 player setVariable ["my_squad", _grp, true];
 
+[_grp] call F_deleteWaypoints;
 [true] call player_squad_actions;
 build_refresh = true;

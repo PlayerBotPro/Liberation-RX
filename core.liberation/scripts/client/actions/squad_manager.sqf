@@ -4,68 +4,34 @@ if (!(player diarySubjectExists str(parseText GRLIB_r3))) exitWith {};
 private _cargo_seat_free = 0;
 
 while {true} do {
-	// If Squad
 	private _my_squad = player getVariable "my_squad";
+	// If Squad exist
 	if (!isNil "_my_squad") then {
 		private _leader = leader _my_squad;
-		private _veh_player = vehicle player;
-
-		//get in
-		if ( _veh_player != player && _leader distance2D player <= 15 && count (waypoints _my_squad) == 0 ) then {
-			private _indx = 1;
-			{
-				_cargo_seat_free = _veh_player emptyPositions "Cargo";
-				if (vehicle _x != _veh_player && _cargo_seat_free > 0) then {
-					_x assignAsCargoIndex [_veh_player, _indx];
-					_x moveInCargo [_veh_player, _indx];
-					_indx =_indx + 1;
+		private _veh_player = objectParent player;
+		if (_leader distance2D player <= 30 && count (waypoints _my_squad) == 0) then {
+			if (!isNull _veh_player) then {
+				if (_veh_player iskindof "ParachuteBase") exitWith {};
+				//get in vehicle
+				private _list = (units _my_squad) select { objectParent _x != _veh_player};
+				if (count _list > 0) then {
+					player sideChat format ["%1 board in %2!", _my_squad, [_veh_player] call F_getLRXName];
+					doStop _list;
+					[_veh_player, _list, false] call F_manualCrew;
+					sleep 5;
 				};
-
-				if (vehicle _x == _x && _cargo_seat_free == 0) then {
-					_x doMove (getPosATL player);
-				};
-				sleep 0.5;
-			} forEach units _my_squad;
-		} else {
-			//para drop
-			if (_veh_player iskindof "ParachuteBase") then {
-				{
-					if ( vehicle _x != _x && !(vehicle _x iskindof "ParachuteBase") ) then {
-						[_x, getPos _x] spawn paraDrop;
-						sleep 0.3;
-					};
-				} forEach units _my_squad;
-			};
-
-			//get out
-			if (_veh_player == player) then {
-				{
-					//group leaveVehicle vehicle
-					if (vehicle _x != _x && getPos _x select 2 <= 5) then {
-						_x action ["getOut", vehicle _x];
-						unassignVehicle _x;
-						commandGetOut _x;
-						doGetOut _x;
-						sleep 0.5;
-					};
-				} forEach units _my_squad;
-			};
-
-			//go Pos
-			private _wPos = getPos player;
-			if (count (waypoints _my_squad) > 0 ) then {
-				_wPos = getWPPos [_my_squad, 0];
-			};
-
-			if  (_leader distance2D _wPos > 10) then {
-				_leader setUnitPos "UP";
-				_leader setSpeedMode 'FULL';
-				_leader doMove _wPos;
 			} else {
-				doStop _leader;
+				//get out vehicle
+				private _list = (units _my_squad) select {
+					private _vehicle = objectParent _x;
+					!isNull _vehicle && { !(_vehicle isKindOf "ParachuteBase") }
+				};
+				if (count _list > 0) then {
+					player sideChat format ["%1 get out vehicle!", _my_squad];
+					{ [_x, false] spawn F_ejectUnit; sleep 0.5 } forEach _list;
+					sleep 5;
+				};
 			};
-			private _squad_grp = (units _my_squad - [_leader]);
-			_squad_grp doFollow _leader;
 		};
 
 		private _my_squad_order = player getVariable ["my_squad_order", nil];
