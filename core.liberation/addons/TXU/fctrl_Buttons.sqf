@@ -23,17 +23,15 @@ if (_curSubject == "LRX Info" && _curEntry == "Website Links") then {
 		// Inject button
 		ctrlPosition _diaryEntry params ["_entryX", "_entryY", "_entryW", "_entryH"];
 		_ctrl = _display ctrlCreate ["TXU_TS_INFOBUTTON1", 10001, _diaryEntry];
-		_ctrl ctrlSetPosition[0.02, 0.01, _entryW/2, _btnHeight];
+		_ctrl ctrlSetPosition[0.02, 0.01, _entryW / 2, _btnHeight];
 		_ctrl ctrlCommit 0;
+		ctrlSetFocus _ctrl;
 		_ctrl = _display ctrlCreate ["TXU_TS_INFOBUTTON2", 10002, _diaryEntry];
 		_ctrl ctrlSetPosition[0.02, 0.05, _entryW / 2, _btnHeight];
 		_ctrl ctrlCommit 0;
 		_ctrl = _display ctrlCreate ["TXU_TS_INFOBUTTON3", 10003, _diaryEntry];
 		_ctrl ctrlSetPosition[0.02, 0.09, _entryW / 2, _btnHeight];
 		_ctrl ctrlCommit 0;
-		// _ctrl = _display ctrlCreate ["TXU_TS_INFOBUTTON4", 10004, _diaryEntry];
-		// _ctrl ctrlSetPosition[0.02, 0.13, _entryW / 2, _btnHeight];
-		// _ctrl ctrlCommit 0;
 	};
 } else {
 	// If its not the mod info entry AND the injected button exists

@@ -21,10 +21,9 @@ class TXU_GUI_RscButton
 	fade = 0;
 	access = 0;
 	idc = -1;
-	type = CT_ACTIVETEXT;
+	type = CT_BUTTON;
 	url = "";
-	//style = ST_CENTER;
-	style = 0x02;
+	style = ST_CENTER;
 	x = 0;
 	y = 0;
 	w = 0.095589;
@@ -39,8 +38,6 @@ class TXU_GUI_RscButton
 	offsetPressedX = 0;
 	offsetPressedY = 0;
 	borderSize = 0;
-	color[] = {1,1,1,0.7};
-	colorActive[] = {1,1,1,1};
 	colorText[] = {1,1,1,1};
 	colorDisabled[] = {1,1,1,0.25};
 	colorBackground[] = {0,0,0,0.5};
@@ -77,8 +74,8 @@ class TXU_GUI_RscButton
 
 class TXU_TS_INFOBUTTON1 : TXU_GUI_RscButton
 {
-	text = "Click to join LRX Teamspeak";
-	url = "ts3server://liberation-rx.duckdns.org?addbookmark=Liberation RX";
+	text = "Vist our Reddit Website";
+	url = "https://www.reddit.com/r/Liberation_RX/";
 	w = 0.5;
 	colorText[] = {0,1,1,1};
 	colorDisabled[] = {1,1,1,0.25};
@@ -94,20 +91,14 @@ class TXU_TS_INFOBUTTON1 : TXU_GUI_RscButton
 
 class TXU_TS_INFOBUTTON2 : TXU_TS_INFOBUTTON1
 {
-	text = "Join Liberation RX community";
-	url = "https://www.reddit.com/r/Liberation_RX/";
+	text = "Join our Discord community";
+	url = "https://discord.gg/uCRzJ7wauR";
 };
 
 class TXU_TS_INFOBUTTON3 : TXU_TS_INFOBUTTON1
 {
-	text = "Visit our Discord";
-	url = "https://discord.gg/uCRzJ7wauR";
-};
-
-class TXU_TS_INFOBUTTON4 : TXU_TS_INFOBUTTON1
-{
-	text = "Vist our Website";
-	url = "https://www.reddit.com/r/Liberation_RX/";
+	text = "Click to join LRX Teamspeak";
+	url = "ts3server://liberation-rx.duckdns.org?addbookmark=Liberation RX";
 };
 
 // TS Complete format:
@@ -118,4 +109,3 @@ class TXU_TS_INFOBUTTON4 : TXU_TS_INFOBUTTON1
 //     &channelpassword=defaultChannelPassword
 //     &token=TokenKey
 //     &addbookmark=SomeBookmarkText
-
