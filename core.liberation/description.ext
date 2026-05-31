@@ -75,6 +75,16 @@ class CfgDebriefing {
 	};
 };
 
+class CfgCommands {
+	// Note that in case of clients connected to dedicated server, restrictions defined in its config have priority.
+	allowedHTMLLoadURIs[] +=
+	{
+        "https://www.reddit.com/r/Liberation_RX/",
+        "https://discord.gg/uCRzJ7wauR",
+        "ts3server://liberation-rx.duckdns.org"
+	};
+};
+
 #include "GREUH\UI\GREUH_interface.hpp"
 #include "ui\liberation_interface.hpp"
 #include "ui\liberation_notifications.hpp"
@@ -93,3 +103,4 @@ class CfgDebriefing {
 #include "addons\JKB\JKB_dialog.hpp"
 #include "addons\VAM\VAM_GUI_controls.hpp"
 #include "addons\VAM\VAM_GUI_classes.hpp"
+#include "addons\TXU\CfgControls.hpp"

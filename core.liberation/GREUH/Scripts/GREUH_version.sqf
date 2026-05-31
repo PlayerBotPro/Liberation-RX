@@ -15,6 +15,9 @@ private _getkeyName = {
 
 player createDiarySubject ["LRX Info", "LRX Info"];
 
+player createDiarySubject ["LRX Info", "Website Links"];
+player createDiaryRecord ["LRX Info", ["Website Links", ""]];
+
 player createDiarySubject ["LRX Info", "Support LRX !"];
 player createDiaryRecord ["LRX Info", ["Support LRX !", "<br/>  Thank you !"]];
 player createDiaryRecord ["LRX Info", ["Support LRX !", "<img image='res\mail.paa' height='32' width='25'/>  <img image='res\paypal.paa' height='32' width='32'/>     <font color='#0080ff'>https://paypal.me/LiberationRX</font><br/>"]];
@@ -43,6 +46,7 @@ player createDiaryRecord ["LRX Info", ["Thanks", format ["<font color='%1'>Agent
 player createDiaryRecord ["LRX Info", ["Thanks", format ["<font color='%1'>Isa</font> for all the love and patience.", "#f80000"]]];
 player createDiaryRecord ["LRX Info", ["Thanks", "Thanks to all the people who contribute to the mission:"]];
 
+player createDiarySubject ["LRX Info", "Modders"];
 player createDiaryRecord ["LRX Info", ["Modders", format ["<font color='%1'>Community Authors</font> for Templates and Maps.", call _getRandomColor]]];
 player createDiaryRecord ["LRX Info", ["Modders", format ["<font color='%1'>Dark Demon</font> for Templates and Maps.", call _getRandomColor]]];
 player createDiaryRecord ["LRX Info", ["Modders", format ["<font color='%1'>Z-Warrior</font> for Templates and Maps.", call _getRandomColor]]];
@@ -59,6 +63,7 @@ if (GRLIB_LRX_Template_enabled) then {
 player createDiarySubject ["LRX Info", "Contributors"];
 player createDiaryRecord ["LRX Info", ["Contributors", format ["<img image='\a3\ui_f\data\map\markers\flags\france_ca.paa' height='20' width='20'/>&#160;&#160;This version (%1) was build on %2 at %3 in France, with love ;)", GRLIB_build_version, GRLIB_build_date, GRLIB_build_time]]];
 player createDiaryRecord ["LRX Info", ["Contributors", format ["All the rest and Scripting Integration<br/>by <font color='#0080ff'>-pSiKO-</font>"]]];
+player createDiaryRecord ["LRX Info", ["Contributors", format ["TXU Info v0.2(fixed)<br/>by <font color='%1'>-Terox-</font>", call _getRandomColor]]];
 player createDiaryRecord ["LRX Info", ["Contributors", format ["Nuke Script v1.00<br/>by <font color='%1'>-Moerderhoschi-</font>", call _getRandomColor]]];
 player createDiaryRecord ["LRX Info", ["Contributors", format ["Advanced Rappelling v1.00<br/>by <font color='%1'>-Seth Duda-</font>", call _getRandomColor]]];
 player createDiaryRecord ["LRX Info", ["Contributors", format ["Vehicle Appearance Manager v1.41<br/>by <font color='%1'>-UNIT_normal-</font>", call _getRandomColor]]];
@@ -72,12 +77,11 @@ player createDiaryRecord ["LRX Info", ["Contributors", format ["pSiKO AI Revive 
 player createDiaryRecord ["LRX Info", ["Contributors", format ["LARs Arsenal v1.05<br/>by <font color='%1'>-Larrow Zurb-</font>", call _getRandomColor]]];
 player createDiaryRecord ["LRX Info", ["Contributors", format ["LRX Dev board: <br/>by <font color='%1'>-ScottTMConnors-</font>,<font color='%2'>Ace is Win</font>", call _getRandomColor, call _getRandomColor]]];
 player createDiaryRecord ["LRX Info", ["Contributors", format ["LRX Community Manager<br/>by <font color='%1'>-Legend_TS13-</font>, <font color='%2'>-Lord_Kamephis-</font>", call _getRandomColor, call _getRandomColor]]];
-
 player createDiaryRecord ["LRX Info", ["Contributors", localize "STR_MISSION_TITLE"]];
+
 player createDiarySubject ["LRX Info", "Settings"];
 private _diary = [];
 private ["_name", "_param_value_list", "_param_value", "_param_data", "_param_text"];
-
 {
 	_name = _x;
 	_diary pushBack format ["%1 <font color='#0080f0'>%2</font> %1", "---", _name];
@@ -101,11 +105,7 @@ player createDiaryRecord ["LRX Info", ["Settings", format ["Main version: <font 
 player createDiaryRecord ["LRX Info", ["Settings", format ["-= LRX Current Settings =-"]]];
 
 player createDiarySubject ["LRX Info", "Server"];
-player createDiaryRecord ["LRX Info", ["Server", format ["Join us on the Official Server !<br/><br/>
-- ARMA III - Liberation RX - %1<br/><font color='#0080ff'>liberation-rx.duckdns.org</font><br/>
-<img image='res\liberation.paa' height='128' width='256'/><br/><br/>
-Team Speak 3<br/><font color='#0080ff'>liberation-rx.duckdns.org</font><br/><br/>
-Discord LRX<br/><font color='#0080ff'>https://discord.gg/uCRzJ7wauR</font>", GRLIB_build_version]]];
+player createDiaryRecord ["LRX Info", ["Server", format ["Join us on the Official Server !<br/><br/>- ARMA III - Liberation RX - %1<br/><font color='#0080ff'>liberation-rx.duckdns.org</font><br/><img image='res\liberation.paa' height='128' width='256'/><br/><br/>Team Speak 3<br/><font color='#0080ff'>liberation-rx.duckdns.org</font><br/><br/>Discord LRX<br/><font color='#0080ff'>https://discord.gg/uCRzJ7wauR</font>", GRLIB_build_version]]];
 
 player createDiarySubject ["Ranking","Ranking"];
 player createDiaryRecord ["Ranking", ["Ranking", format ["<font color='#900000'>%1</font>  :  BANNED<br/>%2", GRLIB_perm_ban, localize "STR_RANK_LVLBAN"]]];

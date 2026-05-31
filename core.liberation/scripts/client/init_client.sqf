@@ -167,6 +167,7 @@ titleText ["", "BLACK FADED", 100];
 [] execVM "addons\JKB\JKB_init.sqf";
 [] execVM "addons\WHS\warehouse_init.sqf";
 [] execVM "addons\FOB\officer_init.sqf";
+[] execVM "addons\TXU\txu_init.sqf";
 
 // LRX Arsenal
 diag_log "--- LRX: Build Arsenal Classnames ---";
