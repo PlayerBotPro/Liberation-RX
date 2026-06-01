@@ -103,4 +103,4 @@ class CfgCommands {
 #include "addons\JKB\JKB_dialog.hpp"
 #include "addons\VAM\VAM_GUI_controls.hpp"
 #include "addons\VAM\VAM_GUI_classes.hpp"
-#include "addons\TXU\CfgControls.hpp"
+#include "addons\TXU\txu_controls.hpp"

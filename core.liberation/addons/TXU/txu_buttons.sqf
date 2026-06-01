@@ -11,7 +11,7 @@ private _curEntry = _diarySubList lbText (_index * 2);
 
 // diag_log format ["[TXU] subject: '%1', entry: '%2'", _curSubject, _curEntry];
 
-if (_curSubject == "LRX Info" && _curEntry == "Website Links") then {
+if (_curSubject == TXU_Diary && _curEntry == TXU_subDiary) then {
 	if (isNull (_diaryEntry controlsGroupCtrl 10001)) then {
 		private _btnHeight = 0.02 * safeZoneH;
 

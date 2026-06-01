@@ -1,19 +1,21 @@
 // AUTHOR	      :	Terox (terox_@hotmail.com)
-// MP MACHINE	  :	all
+// version        :	0.1
 // Called from	  :	client init;
+// ----------------------------------------------
+// version 0.2    : by pSiKO
+// refactored, fixed, upgraded
 
 
-//////////////////////////////
-//     DEFINE FUNCTIONS     //
-//////////////////////////////
-
+// Global variables
+TXU_Diary = "LRX Info";
+TXU_subDiary = "Website Links";
 TXU_INFO_CtrlEHAdded = false;
 
-// Functions - GUI CONTROL
-TXU_INFO_fctrl_Buttons = compileFinal preprocessfilelinenumbers ("addons\TXU\fctrl_Buttons.sqf");
-TXU_INFO_fmapEH = compileFinal preprocessfilelinenumbers ("addons\TXU\fmapEH.sqf");
+// Functions
+TXU_INFO_buttons = compileFinal preprocessfilelinenumbers ("addons\TXU\txu_buttons.sqf");
+TXU_INFO_mapEH = compileFinal preprocessfilelinenumbers ("addons\TXU\txu_mapEH.sqf");
 
 waitUntil {!(isNull (findDisplay 46))};
-addMissionEventHandler ["Map", {_this spawn TXU_INFO_fmapEH}];
+addMissionEventHandler ["Map", {_this spawn TXU_INFO_mapEH}];
 
 systemChat "-------- TXU INFO Initialized --------";
