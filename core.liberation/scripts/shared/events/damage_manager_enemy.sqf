@@ -49,7 +49,7 @@ if (_unit isKindOf "CAManBase") then {
 		};
 	};
 
-	if (time > (_unit getVariable ["GRLIB_isProtected", 0])) then {
+	if (isNull objectParent _unit && time > (_unit getVariable ["GRLIB_isProtected", 0])) then {
 		private _lucky = (floor random 3 == 0);
 		if (_damage >= 1 && _damage <= 2 && _lucky) then {
 			_damage = 0.86;
