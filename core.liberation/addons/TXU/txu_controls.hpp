@@ -14,7 +14,6 @@ class TXU_GUI_RscButton
 {
 	deletable = 0;
 	fade = 0;
-	access = 0;
 	idc = -1;
 	type = CT_BUTTON;
 	url = "";

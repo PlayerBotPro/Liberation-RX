@@ -77,7 +77,7 @@ class CfgDebriefing {
 
 class CfgCommands {
 	// Note that in case of clients connected to dedicated server, restrictions defined in its config have priority.
-	allowedHTMLLoadURIs[] +=
+	allowedHTMLLoadURIs[] =
 	{
         "https://www.reddit.com/r/Liberation_RX/",
         "https://discord.gg/uCRzJ7wauR",
