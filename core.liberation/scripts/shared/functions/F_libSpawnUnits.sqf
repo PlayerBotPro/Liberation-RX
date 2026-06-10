@@ -52,7 +52,7 @@ private _units = [];
 			_unit allowFleeing 0;
 		};
 		_unit addMPEventHandler ["MPKilled", {_this spawn kill_manager}];
-
+		_unit addEventHandler ["HandleDamage", { _this call damage_manager_enemy }];
 		_pos = getPos _unit;
 		if (_type == "divers") then {
 			_pos set [2, -6];
