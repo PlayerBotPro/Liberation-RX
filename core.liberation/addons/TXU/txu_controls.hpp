@@ -2,8 +2,6 @@
 #define TXU_GUI_GRID_HABS		(TXU_GUI_GRID_WABS / 1.2)
 #define TXU_GUI_GRID_W			(TXU_GUI_GRID_WABS / 40)
 #define TXU_GUI_GRID_H			(TXU_GUI_GRID_HABS / 25)
-#define TXU_GUI_GRID_X			(safezoneX)
-#define TXU_GUI_GRID_Y			(safezoneY + safezoneH - TXUGUI_GRID_HABS)
 
 // Default text sizes
 #define TXU_GUI_TEXT_SIZE_SMALL		(TXU_GUI_GRID_H * 0.8)
@@ -95,7 +93,7 @@ class TXU_TS_INFOBUTTON3 : TXU_TS_INFOBUTTON1
 	url = "ts3server://liberation-rx.duckdns.org?addbookmark=Liberation RX";
 };
 
-// Note you MUST to allow urls in description.ext in allowedHTMLLoadURIs section !
+// Note: you MUST allow urls in description.ext file in the allowedHTMLLoadURIs section !
 
 // TS Complete format:
 //     ts3server://ts9.teamspeak.cc?port=9987
