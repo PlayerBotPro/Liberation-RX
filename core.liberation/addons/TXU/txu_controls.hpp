@@ -101,6 +101,8 @@ class TXU_TS_INFOBUTTON3 : TXU_TS_INFOBUTTON1
 	url = "ts3server://liberation-rx.duckdns.org?addbookmark=Liberation RX";
 };
 
+// Note you MUST to allow urls in description.ext in allowedHTMLLoadURIs section !
+
 // TS Complete format:
 //     ts3server://ts9.teamspeak.cc?port=9987
 //     &nickname=UserNickname
