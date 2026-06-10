@@ -1,19 +1,14 @@
-#define TXU_GUI_GRID_WAbs		((safezoneW / safezoneH) min 1.2)
-#define TXU_GUI_GRID_HAbs		(TXU_GUI_GRID_WAbs / 1.2)
-#define TXU_GUI_GRID_W			(TXU_GUI_GRID_WAbs / 40)
-#define TXU_GUI_GRID_H			(TXU_GUI_GRID_HAbs / 25)
+#define TXU_GUI_GRID_WABS		((safezoneW / safezoneH) min 1.2)
+#define TXU_GUI_GRID_HABS		(TXU_GUI_GRID_WABS / 1.2)
+#define TXU_GUI_GRID_W			(TXU_GUI_GRID_WABS / 40)
+#define TXU_GUI_GRID_H			(TXU_GUI_GRID_HABS / 25)
 #define TXU_GUI_GRID_X			(safezoneX)
-#define TXU_GUI_GRID_Y			(safezoneY + safezoneH - TXUGUI_GRID_HAbs)
+#define TXU_GUI_GRID_Y			(safezoneY + safezoneH - TXUGUI_GRID_HABS)
 
 // Default text sizes
 #define TXU_GUI_TEXT_SIZE_SMALL		(TXU_GUI_GRID_H * 0.8)
 #define TXU_GUI_TEXT_SIZE_MEDIUM	(TXU_GUI_GRID_H * 1)
 #define TXU_GUI_TEXT_SIZE_LARGE		(TXU_GUI_GRID_H * 1.2)
-
-// Pixel grid
-#define TXU_GUI_pixelScale	0.50
-#define TXU_GRID_W (pixelW * pixelGrid * TXU_GUI_pixelScale)
-#define TXU_GRID_H (pixelH * pixelGrid * TXU_GUI_pixelScale)
 
 class TXU_GUI_RscButton
 {
