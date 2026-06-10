@@ -20,23 +20,23 @@ private _remove_items = [
 
 // hand weapon
 if (_hand_weapon != "") then {
-	[_unit, _hand_weapon, _maxsec] call F_UnitAddAmmo;
+	[_unit, _hand_weapon, _maxsec] call F_unitAddAmmo;
 };
 
 // primary weapon
 if (_primary_weapon != "") then {
 	if ( _primary_weapon find "LMG" >= 0 || _primary_weapon find "MMG" >= 0 || _primary_weapon find "RPK12" >= 0 ) then { _minpri = 1; _maxpri = 3 };
-	private _needammo1 = [_unit, _primary_weapon, _minpri] call F_UnitNeedAmmo;
+	private _needammo1 = [_unit, _primary_weapon, _minpri] call F_unitNeedAmmo;
 	if (_needammo1) then {
-		[_unit, _primary_weapon, _maxpri] call F_UnitAddAmmo;
+		[_unit, _primary_weapon, _maxpri] call F_unitAddAmmo;
 	};
 };
 
 // secondary weapon
 if (!isNull (unitBackpack _unit) && _secondary_weapon != "") then {
-	private _needammo2 = [_unit, _secondary_weapon, _minsec] call F_UnitNeedAmmo;
+	private _needammo2 = [_unit, _secondary_weapon, _minsec] call F_unitNeedAmmo;
 	if (_needammo2) then {
 		clearAllItemsFromBackpack _unit;
-		[_unit, _secondary_weapon, _maxsec] call F_UnitAddAmmo;
+		[_unit, _secondary_weapon, _maxsec] call F_unitAddAmmo;
 	};
 };

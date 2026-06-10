@@ -71,19 +71,19 @@ while {true} do {
 					};
 
 					// check primary Weapon
-					_needammo1 = [_unit, _primary_weapon, _minpri] call F_UnitNeedAmmo;
+					_needammo1 = [_unit, _primary_weapon, _minpri] call F_unitNeedAmmo;
 					if (_needammo1) then {
 						_unit groupchat localize "STR_DIALOG_REARM_PRIMARY";
-						_added_pri = [_unit, _primary_weapon, _maxpri] call F_UnitAddAmmo;
+						_added_pri = [_unit, _primary_weapon, _maxpri] call F_unitAddAmmo;
 					};
 
 					// check secondary Weapon if backpack present
 					if (!isNull (unitBackpack _unit)) then {
-						_needammo2 = [_unit, _secondary_weapon, _minsec_def] call F_UnitNeedAmmo;
+						_needammo2 = [_unit, _secondary_weapon, _minsec_def] call F_unitNeedAmmo;
 						if (_needammo2) then {
 							//clearAllItemsFromBackpack _unit;
 							_unit groupchat localize "STR_DIALOG_REARM_SECONDARY";
-							_added_sec = [_unit, _secondary_weapon, _maxsec_def] call F_UnitAddAmmo;
+							_added_sec = [_unit, _secondary_weapon, _maxsec_def] call F_unitAddAmmo;
 							if (_added_sec > 0 && count (secondaryWeaponMagazine _unit) == 0) then {
 								_unit removeWeapon _secondary_weapon;
 								sleep 0.1;
