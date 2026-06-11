@@ -10,7 +10,7 @@ if (!isNull _instigator) then {
 	};
 };
 
-if (_unit isKindOf "AllVehicles") then {
+if (_unit isKindOf "AllVehicles") exitWith {
 	if (isPlayer _killer) then {
 		_unit setVariable ["GRLIB_last_killer", _killer, true];
 	};

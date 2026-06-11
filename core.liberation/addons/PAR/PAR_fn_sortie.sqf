@@ -51,6 +51,7 @@ _wnded setUnconscious false;
 if (isPlayer _wnded || isPlayer _medic) then {
 	_wnded setVariable ["PAR_isUnconscious", false, true];
 	_wnded setVariable ["PAR_isDragged", 0, true];
+	showChat true;
 };
 
 _wnded switchMove "AinjPpneMstpSnonWrflDnon_rolltofront";

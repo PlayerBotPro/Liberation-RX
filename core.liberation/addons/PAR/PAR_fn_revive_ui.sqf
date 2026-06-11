@@ -107,7 +107,7 @@ while { alive player && ([player] call PAR_is_wounded) && _bleedout_timer > 0 } 
 	};
 
 	if (_ticks % 10 == 0) then {
-		[ 10000 ] call BIS_fnc_bloodEffect;
+		[10000] call BIS_fnc_bloodEffect;
 	};
 
 	if (_ticks % 50 == 0) then {
@@ -122,6 +122,7 @@ while { alive player && ([player] call PAR_is_wounded) && _bleedout_timer > 0 } 
 deletemarker _mk1;
 
 "colorCorrections" ppEffectEnable false;
+"colorCorrections" ppEffectCommit 2;
 "filmGrain" ppEffectEnable false;
 _cam cameraEffect ["Terminate", "BACK"];
 camDestroy _cam;
