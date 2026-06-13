@@ -16,8 +16,7 @@ private _getkeyName = {
 player createDiarySubject ["LRX Info", "LRX Info"];
 
 player createDiarySubject ["LRX Info", "Website Links"];
-player createDiaryRecord ["LRX Info", ["Website Links", ""]];
-player createDiaryRecord ["LRX Info", ["Website Links", "<br/><br/><br/>"]];
+player createDiaryRecord ["LRX Info", ["Website Links", "<br/><br/>"]];
 
 player createDiarySubject ["LRX Info", "Support LRX !"];
 player createDiaryRecord ["LRX Info", ["Support LRX !", "<br/>  Thank you !"]];

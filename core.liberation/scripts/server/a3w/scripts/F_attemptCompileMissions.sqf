@@ -5,12 +5,9 @@
 //	@file Author: AgentRev
 //	LRX Integration: pSiKO
 
-private ["_missionsArray", "_missionsFolder"];
-
-_missionsArray = _this select 0;
-_missionsFolder = _this select 1;
+params ["_missionsArray"];
 
 {
-	//Attempt to compile every mission for early bug detection
-	compile preprocessFileLineNumbers format ["scripts\server\a3w\missions\%1\%2.sqf", _missionsFolder, _x select 0];
+	compile preprocessFileLineNumbers format ["scripts\server\a3w\missions\sideMissions\%1.sqf", (_x select 0)];
+	sleep 0.5;
 } forEach _missionsArray;

@@ -47,6 +47,9 @@ if (A3W_Mission_count == 0) exitWith {};
 [] call setupMissionMarker;
 [] call setupMissionArrays;
 
+//Attempt to compile every mission for early bug detection
+[SideMissions] call attemptCompileMissions;
+
 for "_i" from 1 to A3W_Mission_count do {
 	// Start Permanent controller
 	private _init_sleep = ((2 + floor random 10) * 60);

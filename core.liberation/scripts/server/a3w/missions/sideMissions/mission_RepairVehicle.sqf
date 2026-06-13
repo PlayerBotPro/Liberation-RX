@@ -45,7 +45,11 @@ _setupObjects = {
 	_smoke attachTo [_tank, [0, 1.5, 0]];
 	_managed_units = crew _tank;
 	_tank_driver = driver _tank;
-	(group _tank_driver) setBehaviourStrong "SAFE";
+	private _grp_tank = group _tank_driver;
+	_grp_tank setSpeedMode "LIMITED";
+	_grp_tank setBehaviourStrong "CARELESS";
+	_grp_tank setCombatMode "GREEN";
+	[_grp_tank] call F_deleteWaypoints;
 	_last_dead_pos = [];
 	{
 		if (_x != _tank_driver) then {
@@ -89,11 +93,12 @@ _setupObjects = {
 			_spawn_pos = ([_tank, 200] call F_getRandomPos);
 			_grp = [_spawn_pos, ([] call getNbUnits), "militia", false] call createCustomGroup;
 			[_grp, _tank] spawn battlegroup_ai_direct;
-			sleep 30;
+			sleep 10;
 			waitUntil {sleep 1; (_tank getHitPointDamage "HitEngine" < 1)};
 			_tank setFuel 1;
 			_tank engineOn true;
 			_tank setPos (getPos _tank);
+			(driver _tank) doMove _targetPos;
 		};
 	};
 
