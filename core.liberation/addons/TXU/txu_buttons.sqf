@@ -32,6 +32,9 @@ if (_curSubject == TXU_Diary && _curEntry == TXU_subDiary) then {
 		_ctrl = _display ctrlCreate ["TXU_TS_INFOBUTTON3", 10003, _diaryEntry];
 		_ctrl ctrlSetPosition[0.02, 0.09, _entryW / 2, _btnHeight];
 		_ctrl ctrlCommit 0;
+		_ctrl = _display ctrlCreate ["TXU_TS_INFOBUTTON4", 10004, _diaryEntry];
+		_ctrl ctrlSetPosition[0.02, 0.13, _entryW / 2, _btnHeight];
+		_ctrl ctrlCommit 0;		
 	};
 } else {
 	// If its not the mod info entry AND the injected button exists

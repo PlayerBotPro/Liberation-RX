@@ -93,6 +93,12 @@ class TXU_TS_INFOBUTTON3 : TXU_TS_INFOBUTTON1
 	url = "ts3server://liberation-rx.duckdns.org?addbookmark=Liberation RX";
 };
 
+class TXU_TS_INFOBUTTON4 : TXU_TS_INFOBUTTON1
+{
+	text = "Download Teamspeak";
+	url = "https://teamspeak.com/en/downloads/";
+};
+
 // Note: you MUST allow urls in description.ext file in the allowedHTMLLoadURIs section !
 
 // TS Complete format:
