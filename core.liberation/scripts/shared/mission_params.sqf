@@ -1442,7 +1442,7 @@ _Mission_Params = [
         ]]
     ]],
     [GRLIB_PARAM_KickIdle, createHashMapFromArray [
-        [GRLIB_PARAM_ValueKey, 0],
+        [GRLIB_PARAM_ValueKey, (20*60)],
         [GRLIB_PARAM_NameKey, localize "STR_KICK_IDLE"],
         [GRLIB_PARAM_OptionLabelKey, [
             localize "STR_PARAMS_DISABLED",
