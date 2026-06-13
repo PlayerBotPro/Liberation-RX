@@ -8,7 +8,7 @@ params ["_player"]; // _didJIP not used
         private _currentScore = [_player] call F_getScore;
         
         if (_currentScore < 1500) then {
-            [_player, 1500 - _currentScore] call F_addScore; 
+            [_player, 1500 - _currentScore] remoteExec ["F_addScore", 2];
         };
         
         sleep 60;
