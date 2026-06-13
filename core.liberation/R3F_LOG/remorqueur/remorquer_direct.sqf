@@ -104,7 +104,6 @@ if (R3F_LOG_mutex_local_verrou) then {
 				_objet lockDriver true;
 				for "_i" from 0 to (_objet emptyPositions "Cargo") do { _objet lockCargo [_i, true] };
 				{ _objet lockTurret [_x, true] } forEach (allTurrets _objet);
-				_objet setVehicleLock "LOCKED";
 			};
 			
 			R3F_LOG_objet_selectionne = objNull;

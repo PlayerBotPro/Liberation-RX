@@ -13,6 +13,8 @@ GRLIB_checkAction_AbandonBox = {
 GRLIB_checkAction_LoadBox = {
 	params ["_target", "_unit"];
 	if (!isNil "GRLIB_load_box") exitWith { false };
+	if (!isNull (_target getVariable ['R3F_LOG_remorque', objNull])) exitWith { false };
+	if (!isNull (_target getVariable ['R3F_LOG_est_transporte_par', objNull])) exitWith { false };
 	if (_target getVariable ["R3F_LOG_disabled", false]) exitWith { false };
 	private _transport = [_unit, typeOf _target, 10] call F_getNearestTransport;
 	if (isNull _transport) exitWith { false };

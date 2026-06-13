@@ -64,7 +64,7 @@ if (GRLIB_endgame >= 1 || GRLIB_global_stop == 1) then {
 			(alive _x) && !(isObjectHidden _x) &&
 			(typeof _x in GRLIB_classnames_to_save) &&
 			(speed vehicle _x < 5) &&
-			(isNull attachedTo _x) &&
+			(isNull attachedTo _x || !isNull (_x getVariable ['R3F_LOG_est_transporte_par', objNull])) &&
 			!(_x getVariable ["GRLIB_vehicle_owner", ""] in ["server", "public"])
 		};
 		_all_buildings = _all_buildings + _nextbuildings;
