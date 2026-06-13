@@ -15,30 +15,31 @@ if (_info) then {
 	[gamelogic, _text] remoteExec ["globalChat", 0];
 };
 
-private	_lst_lrx = [];
-private ["_object", "_offset"];
-{
-	_object = _x;
-	_offset = _vehicle worldToModel (_object modelToWorld [0,0,0]);
-	_offset = [
-		round ((_offset select 0) * 100) / 100,
-		round ((_offset select 1) * 100) / 100,
-		round ((_offset select 2) * 100) / 100
-	];
-	detach _object;
-	_object hideObjectGlobal true;
-	_object enableSimulationGlobal false;	
-	_lst_lrx pushBack [_object, _offset];
-} forEach (_vehicle getVariable ["GRLIB_ammo_vehicle_load", []]);
+private	_lst_lrx = _vehicle getVariable ["GRLIB_ammo_vehicle_load", []];
+private _has_cargo = (count _lst_lrx > 0);
 
 waitUntil {sleep 0.1; round (getPos _vehicle select 2) <= _open_parachute};
-
+if (_has_cargo) then {
+	{
+		_x hideObjectGlobal true;
+		_x enableSimulationGlobal false;
+	} forEach _lst_lrx;
+	sleep 1;
+};
 private _pos = getPos _vehicle;
 private _parachute = createVehicle ["B_Parachute_02_F", _pos, [], 0, "NONE"];
 _parachute disableCollisionWith _vehicle;
 _parachute disableCollisionWith _source;
 _parachute setVelocity (velocity _vehicle);
 _vehicle attachTo [_parachute, [0,0,0.6]];
+
+if (_has_cargo) then {
+	sleep 2;
+	{
+		_x hideObjectGlobal false;
+		_x enableSimulationGlobal true;
+	} forEach _lst_lrx;
+};
 
 private _timeout = time + 150;
 waitUntil {sleep 0.1;((getPos _vehicle select 2) < _start_smoke || time > _timeout)};
@@ -59,14 +60,6 @@ if (!alive _vehicle) exitWith {
 	{ deleteVehicle _x } forEach _lst_lrx;
 };
 
-{
-	_object = _x select 0;
-	_offset = _x select 1;
-	_object attachTo [_vehicle, _offset];
-	if (_object isKindOf "Cargo_base_F") then { _object setDir 270 };
-	_object hideObjectGlobal false;
-	_object enableSimulationGlobal true;
-} forEach _lst_lrx;
 sleep 3;
 deleteVehicle _parachute;
 [_vehicle] call F_vehicleUnflip;
