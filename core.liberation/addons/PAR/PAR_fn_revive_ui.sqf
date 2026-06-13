@@ -121,8 +121,9 @@ while { alive player && ([player] call PAR_is_wounded) && _bleedout_timer > 0 } 
 
 deletemarker _mk1;
 
-"colorCorrections" ppEffectEnable false;
+"colorCorrections" ppEffectAdjust [1, 1, 0, [0,0,0,0], [1,1,1,1], [1,0,0,0]];
 "colorCorrections" ppEffectCommit 2;
+"colorCorrections" ppEffectEnable false;
 "filmGrain" ppEffectEnable false;
 _cam cameraEffect ["Terminate", "BACK"];
 camDestroy _cam;
