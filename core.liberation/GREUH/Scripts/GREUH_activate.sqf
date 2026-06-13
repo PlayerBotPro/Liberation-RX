@@ -7,7 +7,7 @@ show_nametags = true;
 show_platoon = true;
 desired_vehvolume = 35;
 
-greuh_options_profile = profileNamespace getVariable "GREUH_OPTIONS_PROFILE";
+greuh_options_profile = profileNamespace getVariable "GREUH_OPTIONS_PROFILE_LRX";
 if ( !isNil "greuh_options_profile" ) then {
 	desiredviewdistance_inf = greuh_options_profile select 0;
 	desiredviewdistance_veh = greuh_options_profile select 1;
