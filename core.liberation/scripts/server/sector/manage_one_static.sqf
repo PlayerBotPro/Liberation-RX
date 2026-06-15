@@ -21,7 +21,7 @@ while {alive _static} do {
             _timer = _static getVariable ["GREUH_rearm_timer", 0];
             if (_timer <= time) then {
                 _static setVehicleAmmo 1;
-                _static setVariable ["GREUH_rearm_timer", round (time + (3*60))];  // min cooldown
+                _static setVariable ["GREUH_rearm_timer", round (time + (5*60))];  // min cooldown
             };
         };
 
