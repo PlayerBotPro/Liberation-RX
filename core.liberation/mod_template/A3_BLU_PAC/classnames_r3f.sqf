@@ -149,6 +149,7 @@ R3F_LOG_CFG_can_be_moved_by_player = R3F_LOG_CFG_can_be_moved_by_player +
 	"B_T_Mortar_01_F",
 	"B_T_Static_AA_F",
 	"B_T_Static_AT_F",
+	"B_Radar_System_01_F",	
 	"B_SAM_System_03_F",
 	"B_SAM_System_01_F",
 	"B_AAA_System_01_F",
