@@ -33,13 +33,14 @@ if (isPlayer _unit) exitWith {
 
 _unit setUnconscious true;
 _unit setVariable ["GRLIB_isLucky", 1];
-_unit setUnitPos "DOWN";
 if !(PAR_AidKit in (items _unit) || PAR_Medikit in (items _unit)) exitWith {};
-sleep 10 + (floor random 30);
+sleep 3;
+_unit setUnconscious false;
+_unit setUnitPos "DOWN";
+sleep 7 + (floor random 20);
 if (alive _unit) then {
     _unit action ["HealSoldierSelf", _unit];
     sleep 6;
     _unit setUnitPos "AUTO";
     _unit setVariable ["GRLIB_isLucky", nil];
-    _unit setUnconscious false;
 };
