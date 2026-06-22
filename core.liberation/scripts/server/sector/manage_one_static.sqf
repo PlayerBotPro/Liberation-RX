@@ -1,7 +1,9 @@
 params ["_static"];
 
 _static setVariable ["LRX_managed_static", true, true];
-_static addEventHandler ["HandleDamage", { _this call damage_manager_static }];
+
+// PlayerBot: remove Godlike static
+// _static addEventHandler ["HandleDamage", { _this call damage_manager_static }];
 
 private ["_near_arsenal", "_vehicle_need_ammo", "_near_repair", "_vehicle_need_repair", "_gunner"];
 private _timer = 0;
