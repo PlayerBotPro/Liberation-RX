@@ -473,6 +473,11 @@ if (!isNil "_lrx_liberation_savegame") then {
 };
 
 if (abort_loading) exitWith {};
+
+/* 
+ ***
+ * PlayerBot: Remove lock vehicle build before occupy military base
+ ***
 if (count GRLIB_vehicle_to_military_base_links == 0) then {
 	private ["_assigned_bases", "_assigned_vehicles", "_nextbase", "_nextvehicle"];
 	_assigned_bases = [];
@@ -493,6 +498,7 @@ if (count GRLIB_vehicle_to_military_base_links == 0) then {
 		};
 	} foreach _classnames_to_check;
 };
+*/
 
 {
 	if (count (_x nearObjects [FOB_outpost, 20]) > 0) then { GRLIB_all_outposts pushBack _x };
