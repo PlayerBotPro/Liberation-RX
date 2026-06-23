@@ -45,7 +45,7 @@ box_transport_big_offset = box_transport_big_offset + [
 	["B_MRAP_01_F", [0, 1.5, 1.8]],
 	["B_MRAP_01_hmg_F", [0, 1.5, 1.8]],
 	["B_MRAP_01_gmg_F", [0, 1.5, 1.8]],
-	["B_APC_Tracked_01_rcws_F",[0, 0.5, 2]],
+	["B_APC_Tracked_01_rcws_F",[0, 0.5, 1.6]],
 	["B_APC_Tracked_01_AA_F", [0, 0.5, 2]],
 	["B_UAV_02_dynamicLoadout_F", [0, 0.1, 0.8]],
 	["B_Heli_Light_01_F", [0, 0.5, 1]]

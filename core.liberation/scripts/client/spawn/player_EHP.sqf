@@ -128,7 +128,7 @@ if (_unit == player) then {
 				};
 			};
 			if (!([_unit] call PAR_is_wounded) && !(captive _unit)) then {
-				if (isPlayer _killer && _killer != _unit && vehicle _unit != vehicle _killer && _killer distance2D _unit >= 3) exitWith {
+				if (isPlayer _killer && _killer != _unit && vehicle _unit != vehicle _killer && _killer distance2D _unit >= 3) then {
 					if (time >= (_unit getVariable ["GRLIB_isProtected", 0])) then {
 						_unit setVariable ["GRLIB_isProtected", round(time + 10)];
 						private _msg = format ["%1 (%2)", localize "STR_FRIENDLY_FIRE", name _killer];
@@ -142,20 +142,20 @@ if (_unit == player) then {
 					};
 					_damage = 0;
 				};
-
-				private _veh_unit = objectParent _unit;
-				if (isNull _veh_unit && time > (_unit getVariable ["GRLIB_isProtected", 0])) then {
-					private _lucky = (floor random 3 == 0);
-					if (_damage >= 1 && _damage <= 2 && _lucky) then {
-						_damage = 0.85;
-						[_unit] spawn F_unitWounded;
-					};
-				};
-
-				if (_damage >= 0.86) then {
-					if !(isNull _veh_unit) then {[_unit, _veh_unit] spawn PAR_fn_eject};
-					_unit setVariable ["PAR_isUnconscious", true, true];
-					[_unit, _killer] spawn PAR_fn_playerWounded;
+			};
+			private _veh_unit = objectParent _unit;
+			if (time > (_unit getVariable ["GRLIB_isProtected", 0]) && _damage > 0) then {
+				private _lucky = _unit getVariable ["GRLIB_isLucky", (floor random 3)];
+				if (isNull _veh_unit && _damage >= 1 && _damage <= 2 && _lucky == 0) then {
+					_unit setVariable ["GRLIB_isProtected", round(time + 3)];
+					[_unit] spawn F_unitSemiWounded;
+					_damage = 0.85;
+				} else {
+					if (!([_unit] call PAR_is_wounded) && _damage >= 0.86) then {
+						_unit setVariable ["PAR_isUnconscious", true, true];
+						if !(isNull _veh_unit) then {[_unit, _veh_unit] spawn PAR_fn_eject};
+						[_unit, _killer] spawn PAR_fn_playerWounded;
+					};					
 				};
 			};
 			(_damage min 0.86);
@@ -274,20 +274,21 @@ if (_unit == player) then {
 		_unit addEventHandler ["HandleDamage", {
 			params ["_unit","","_damage"];
 			private _veh_unit = objectParent _unit;
-			if (isNull _veh_unit && time > (_unit getVariable ["GRLIB_isProtected", 0])) then {
-				private _lucky = (floor random 3 == 0);
-				if (_damage >= 1 && _damage <= 2 && _lucky) then {
+			if (time > (_unit getVariable ["GRLIB_isProtected", 0]) && _damage > 0) then {
+				private _lucky = _unit getVariable ["GRLIB_isLucky", (floor random 3)];
+				if (isNull _veh_unit && _damage >= 1 && _damage <= 2 && _lucky == 0) then {
+					_unit setVariable ["GRLIB_isProtected", round(time + 3)];
+					[_unit] spawn F_unitSemiWounded;
 					_damage = 0.85;
-					[_unit] spawn F_unitWounded;
+				} else {
+					if (!([_unit] call PAR_is_wounded) && _damage >= 0.86) then {
+						_unit setVariable ["PAR_isUnconscious", true, true];
+						if !(isNull _veh_unit) then {[_unit, _veh_unit] spawn PAR_fn_eject};
+						[_unit] spawn PAR_fn_unconscious;
+					};					
 				};
 			};
-
-			if (!([_unit] call PAR_is_wounded) && _damage >= 0.86) then {
-				_unit setVariable ["PAR_isUnconscious", true, true];
-				if !(isNull _veh_unit) then {[_unit, _veh_unit] spawn PAR_fn_eject};
-				[_unit] spawn PAR_fn_unconscious;
-			};
-			_damage min 0.86;
+			(_damage min 0.86);
 		}];
 	};
 

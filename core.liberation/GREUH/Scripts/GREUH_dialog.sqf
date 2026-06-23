@@ -123,7 +123,7 @@ while { dialog && alive player } do {
 if (!alive player) then { closeDialog 0 };
 
 greuh_options_profile = [desiredviewdistance_inf,desiredviewdistance_veh,desiredviewdistance_obj,show_teammates,show_platoon,show_nametags,desired_vehvolume,desired_fps];
-profileNamespace setVariable ["GREUH_OPTIONS_PROFILE", greuh_options_profile];
+profileNamespace setVariable ["GREUH_OPTIONS_PROFILE_LRX", greuh_options_profile];
 saveProfileNamespace;
 sleep 2;
 hintSilent "";

@@ -11,15 +11,13 @@ params ["_controllerNum", ["_tempController", false]];
 private ["_missionDelay", "_availableMissions", "_missionsList", "_nextMission", "_info"];
 
 private _controllerSuffix = format ["%1", _controllerNum];
-private _missionsFolder = "sideMissions";
-[SideMissions, _missionsFolder] call attemptCompileMissions;
 
 while {true} do {
 	if (GRLIB_endgame == 1 || GRLIB_global_stop == 1) exitWith {};
+    waitUntil {sleep 1; (_controllerNum == 1 || isNil "A3W_debug")};
 
 	// Select Mission
 	_nextMission = nil;
-	waitUntil { sleep 1; (_controllerNum == 1 || isNil "A3W_debug") };
 	while {isNil "_nextMission"} do	{
 		[SideMissions] call updateMissionsList;
 		_availableMissions = SideMissions select { !(_x select 2) };
@@ -57,7 +55,7 @@ while {true} do {
 
 	// these should be defined in the mission script
 	private ["_setupVars", "_setupObjects", "_waitUntilMarkerPos", "_waitUntilExec", "_waitUntilCondition", "_waitUntilSuccessCondition", "_ignoreAiDeaths", "_failedExec", "_successExec"];
-	[_controllerSuffix] call compile preprocessFileLineNumbers format ["scripts\server\a3w\missions\%1\%2.sqf", _missionsFolder, _nextMission];
+	[_controllerSuffix] call compile preprocessFileLineNumbers format ["scripts\server\a3w\missions\sideMissions\%1.sqf", _nextMission];
 
 	// Mission ended, wait loop
 	_missionDelay = A3W_Mission_delay + ((floor random 11) * 60);
