@@ -16,12 +16,12 @@ params ["_player"]; // _didJIP not used
         
         private _currentAmmo = _player getVariable ["GREUH_ammo_count", 0];
         if (_currentAmmo < 5000) then {
-            _player setVariable ["GREUH_ammo_count", 5000 - _currentAmmo, true];
+            _player setVariable ["GREUH_ammo_count", 5000, true];
         };
 
         private _currentFuel = _player getVariable ["GREUH_fuel_count", 0];
         if (_currentFuel < 1000) then {
-            _player setVariable ["GREUH_fuel_count", 1000 - _currentFuel, true];
+            _player setVariable ["GREUH_fuel_count", 1000, true];
         };
 
         sleep 60;
